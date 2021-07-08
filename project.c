@@ -4,8 +4,8 @@
 #include <math.h>
 
 // MACROS
-#define INT_MIN -32000
-#define BOXSIZE 50
+#define INT_MIN -32000 
+#define BOXSIZE 50 // change to change plot size
 
 
 
@@ -19,13 +19,13 @@ struct Point{
 };
 
 int pointCompare(struct Point p1, struct Point p2){
-    if (abs(p1.x - p2.x) < 0.001 && abs(p1.y - p2.y) < 0.001) return 1;
+    if (abs(p1.x - p2.x) < 0.001 && abs(p1.y - p2.y) > -0.001) return 1;
     return 0;
 }
 
 int EquationCompare(struct Equation e1, struct Equation e2){
     if ((e1.a*e2.b - e1.b*e2.a) <= 0.001 && (e1.a*e2.b - e1.b*e2.a) >= -0.001){
-        if (e1.c == e2.c){
+        if (abs(e1.c / e2.c) - (e1.a / e2.a) < 0.001 && abs(e1.c / e2.c) - (e1.a / e2.a) > -0.001){
             return 0;
         }
         else{
